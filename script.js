@@ -12,7 +12,7 @@ const boardwidth = 50;
 const boardheight = 50;
 let highScore = localStorage.getItem('highScore') || 0;
 let score = 0;
-let time = `00:00`;
+let time = `00-00`;
 
 highScoreElement.innerText = highScore;
 
@@ -104,10 +104,17 @@ startButton.addEventListener('click', () => {
     intervalId = setInterval(() => {
         renderSnake();
     }, 300);
-    // timeIntervalId = setInterval(() => {
-    //     let [minutes, seconds] = time.split(':').map(Number);
-    //     seconds += 1;
-    // });
+    timeIntervalId = setInterval(() => {
+        let [min, sec] = time.split('-').map(Number);
+        if (sec == 59) {
+            min += 1;
+            sec = 0;
+        }else {
+            sec += 1;
+        }
+        time = `${min}-${sec}`;
+        timeElement.innerText = time;
+    },1000);
 });
 
 restartButton.addEventListener('click', () => {
@@ -123,7 +130,7 @@ function resetGame() {
         }
     });
     score = 0;
-    time = `00:00`;
+    time = `00-00`;
     scoreElement.innerText = score;
     timeElement.innerText = time;
     highScoreElement.innerText = highScore;
@@ -134,8 +141,10 @@ function resetGame() {
         { x: 1, y: 4 }, 
         { x: 1, y: 5 }
     ];
-
     food = {x:Math.floor(Math.random() * rows), y: Math.floor(Math.random() * cols)};
+    intervalId = setInterval(() => {
+        renderSnake();
+    }, 300);
 }
 
 addEventListener('keydown', (e) => {

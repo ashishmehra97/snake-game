@@ -98,10 +98,12 @@ html, body{
 
 .fill{
     background-color: var(--bg-fill-color);
+    border-radius: 50%;
 }
 
 .food{
     background-color: var(--bg-food-color);
+    border-radius: 50%;
 }
 
 .modal{
