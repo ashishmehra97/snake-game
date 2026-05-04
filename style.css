@@ -7,6 +7,8 @@
 :root{
     /* Background color */
     --bg-primary-color: #0c0c0c;
+    --bg-fill-color: #fdfdfc;
+    --bg-food-color: #4ccc6a;
 
     /* Text color */
     --text-primary-color: #f0f0f0;
@@ -50,6 +52,18 @@ html, body{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+.btn{
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover{
+    transform: scale(1.1);
+}
+
 .snake-game{
     padding: var(--spacing-xxl);
     display: flex;
@@ -74,10 +88,41 @@ html, body{
     border: 1px solid var(--border-primary-color);
     flex-grow: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(30px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
 }
 
 .block{
     border: 1px solid var(--border-primary-color);
+}
+
+.fill{
+    background-color: var(--bg-fill-color);
+}
+
+.food{
+    background-color: var(--bg-food-color);
+}
+
+.modal{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-color: #35353587;
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal .start-game, .modal .game-over{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.modal .game-over{
+    display: none;
 }
